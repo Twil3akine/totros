@@ -15,7 +15,7 @@ impl Totros {
      Totrosの初期化
      */
     fn new() -> Self {
-        let w: usize = 10;
+        let w: usize = 11;
         let h: usize = 16;
 
         Totros {
