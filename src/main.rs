@@ -1,3 +1,7 @@
+use std::process::Command;
+use std::thread::sleep;
+use std::time::Duration;
+
 #[allow(dead_code)]
 struct Totros {
     width: usize,
@@ -44,6 +48,18 @@ impl Totros {
         }
         write_line(self.width);
     }
+
+    fn update(&self) -> bool {
+        Command::new("clear")
+            .status()
+            .expect("Failed to clear screen");
+
+        self.print();
+        
+        sleep(Duration::from_secs(1));
+
+        true
+    }
 }
 
 fn main() {
@@ -52,5 +68,5 @@ fn main() {
     let width: usize = totros.width;
     let height: usize = totros.height;
 
-    totros.print();
+    while totros.update() {}
 }
