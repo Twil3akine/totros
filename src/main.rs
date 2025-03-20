@@ -31,20 +31,20 @@ impl Totros {
     fn print(&self) {
         // 横線関数の定義
         let write_line = |w: usize| {
-            print!("+");
-            for _ in 0..w { print!("-"); }
-            println!("+");
+            print!("\x1b[33m＋");
+            for _ in 0..w { print!("ー"); }
+            println!("＋\x1b[30m");
         };
 
         write_line(self.width);
         // 縦ループ
         for h in 0..self.height {
             // 横ループ
-            print!("|");
+            print!("\x1b[33m｜\x1b[30m");
             for w in 0..self.width {
-                print!("{}", if self.grid[h][w] { '#' } else { ' ' });
+                print!("{}", if !self.grid[h][w] { "██" } else { "  " });
             }
-            println!("|");
+            println!("\x1b[33m｜\x1b[30m");
         }
         write_line(self.width);
     }
